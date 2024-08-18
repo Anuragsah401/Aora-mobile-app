@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView, Image, Alert } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../../constants";
@@ -17,7 +17,21 @@ const SignUp = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const submit = () => {
+  const submit = async () => {
+    if(!form.userName || !form.email || !form.password) {
+      Alert.alert("Error", "Please fill in all the fields")
+    }
+    setIsSubmitting(true)
+
+    try {
+
+    } catch (err) {
+      Alert.alert("Error", "Failed to create user")
+      setIsSubmitting(false)
+    } finally {
+      setIsSubmitting(false)
+    }
+
     createUser(email, password, userName)
   };
 
