@@ -5,6 +5,8 @@ import { images } from "../../constants";
 import FormField from "../../components/FormField";
 import CustomButtons from "../../components/CustomButtons";
 import { Link } from "expo-router";
+import {createUser} from "../../lib/appwrite";
+
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -15,12 +17,14 @@ const SignUp = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const submit = () => {};
+  const submit = () => {
+    createUser(email, password, userName)
+  };
 
   return (
     <SafeAreaView className="h-full bg-primary">
       <ScrollView>
-        <View className="w-full justify-center min-h-[85vh] px-4 my-6">
+        <View className="w-full justify-center min-h-[90vh] px-4 my-6">
           <Image
             source={images.logo}
             resizeMode="contain"
@@ -54,7 +58,7 @@ const SignUp = () => {
           />
 
           <CustomButtons
-            title="Sign In"
+            title="Sign Up"
             handlePress={submit}
             containerStyles="mt-7"
             isLoading={isSubmitting}
